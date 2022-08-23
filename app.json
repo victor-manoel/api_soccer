@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "api_soccer",
+    "slug": "api_soccer",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
