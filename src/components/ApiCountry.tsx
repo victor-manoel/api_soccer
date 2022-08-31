@@ -1,26 +1,26 @@
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, FlatList, View, Text, SafeAreaView, StyleSheet} from 'react-native';
 
-import {Leagues} from '../pages/Leagues';
+import {Countries} from '../pages/Countries';
 
 import axios from "axios";
 
-type League = {
+type Country = {
     name: string;
-    id: string;
+    code: string;
     league: string;
-    logo: string;
+    flag: string;
 }
 
 export default function(){
     const [loading, setLoading] = useState(true);
-    const [data, setData] = useState<League[]>([]);
+    const [data, setData] = useState<Country[]>([]);
 
     useEffect(() => {
         const options = {
             method: 'GET',
-            url: 'https://api-football-v1.p.rapidapi.com/v3/leagues',
-            params: {season: '2022', current: 'true', type: 'league'}, 
+            url: 'https://api-football-v1.p.rapidapi.com/v3/countries',
+            params: {}, 
             headers: {
               'X-RapidAPI-Key': 'f500032209mshc016268ad53aa50p1f85d0jsn056aabbd7f29',
               'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
@@ -29,6 +29,7 @@ export default function(){
           
           axios.request(options)
           .then(response => {
+            console.log(response.data.response)
             setData(response.data.response)
           })
           .catch(function (error) {
@@ -41,9 +42,9 @@ export default function(){
         <SafeAreaView style={styles.container}>
             <FlatList
                 data={data}
-                keyExtractor={(item) => item.league.id}
+                keyExtractor={(item) => item.code}
                 renderItem={({item}) => {
-                    return <Leagues name={item.league.name} uri={item.league.logo}/>
+                    return <Countries name={item.name} uri={item.flag}/>
                 }}
             /> 
         </SafeAreaView>

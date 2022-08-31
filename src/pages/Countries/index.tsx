@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, TouchableOpacityProps, Image} from 'react-native';
 
-interface LeagueProps extends TouchableOpacityProps {
+interface CountryProps extends TouchableOpacityProps {
     name: string;
     uri: string;
 }
 
-export function Leagues({name, uri, ...rest}: LeagueProps){
+export function Countries({name, uri, ...rest}: CountryProps){
     return(
         <View style={styles.container}>
             <TouchableOpacity style={styles.button} activeOpacity={0.8}>

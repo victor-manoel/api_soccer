@@ -3,19 +3,16 @@ import {View, Text, StyleSheet, TouchableOpacity, TouchableOpacityProps, Image} 
 
 interface LeagueProps extends TouchableOpacityProps {
     name: string;
-    uri: string;
 }
 
-export function Leagues({name, uri, ...rest}: LeagueProps){
+export function Standings({name, ...rest}: LeagueProps){
     return(
         <View style={styles.container}>
             <TouchableOpacity style={styles.button} activeOpacity={0.8}>
                 <View style={styles.name}>
                     <Text style={styles.textButton}>{name}</Text>
                 </View>
-                <View style={styles.imageContainer}>
-                    <Image style={styles.image} source={{uri}}/>
-                </View>
+               
             </TouchableOpacity>
         </View>
 
@@ -44,6 +41,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         fontSize: 18,
         fontWeight: 'bold',
+        color: 'black',
     },
     image: {
         width: 45,

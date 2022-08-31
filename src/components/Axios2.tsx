@@ -1,15 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, FlatList, View, Text, SafeAreaView, StyleSheet} from 'react-native';
 
-import {Leagues} from '../pages/Leagues';
+import {Standings} from '../pages/Standings';
 
 import axios from "axios";
 
 type League = {
     name: string;
     id: string;
-    league: string;
     logo: string;
+    standings: string;
+    home: string;
+    team: string;
+    league: string;
 }
 
 export default function(){
@@ -19,16 +22,16 @@ export default function(){
     useEffect(() => {
         const options = {
             method: 'GET',
-            url: 'https://api-football-v1.p.rapidapi.com/v3/leagues',
-            params: {season: '2022', current: 'true', type: 'league'}, 
+            url: 'https://api-football-v1.p.rapidapi.com/v3/standings',
+            params: {season: '2022', league: "39",},
             headers: {
               'X-RapidAPI-Key': 'f500032209mshc016268ad53aa50p1f85d0jsn056aabbd7f29',
               'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
             }
           };
-          
           axios.request(options)
           .then(response => {
+            console.log(response.data.response)
             setData(response.data.response)
           })
           .catch(function (error) {
@@ -43,7 +46,7 @@ export default function(){
                 data={data}
                 keyExtractor={(item) => item.league.id}
                 renderItem={({item}) => {
-                    return <Leagues name={item.league.name} uri={item.league.logo}/>
+                    return <Standings name={item.league.name}/>
                 }}
             /> 
         </SafeAreaView>
