@@ -1,63 +1,59 @@
-import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, TouchableOpacityProps, Image} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {ActivityIndicator, FlatList, View, Text, SafeAreaView} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {Countries} from '../../components/CountriesList';
+import {Container} from './styles';
 
-interface CountryProps extends TouchableOpacityProps {
+import axios from "axios";
+
+type Country = {
     name: string;
-    uri: string;
+    code: string;
+    league: string;
+    flag: string;
 }
 
-export function Countries({name, uri, ...rest}: CountryProps){
-    return(
-        <View style={styles.container}>
-            <TouchableOpacity style={styles.button} activeOpacity={0.8}>
-                <View style={styles.name}>
-                    <Text style={styles.textButton}>{name}</Text>
-                </View>
-                <View style={styles.imageContainer}>
-                    <Image style={styles.image} source={{uri}}/>
-                </View>
-            </TouchableOpacity>
-        </View>
+export default function ApiCountry() {
 
+    const navigation = useNavigation();
+
+    const [loading, setLoading] = useState(true);
+    const [data, setData] = useState<Country[]>([]);
+
+    useEffect(() => {
+        const options = {
+            method: 'GET',
+            url: 'https://api-football-v1.p.rapidapi.com/v3/countries',
+            headers: {
+              'X-RapidAPI-Key': 'f500032209mshc016268ad53aa50p1f85d0jsn056aabbd7f29',
+              'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
+            }
+          };
+          
+          axios.request(options)
+          .then(response => {
+            console.log(response.data.response)
+            setData(response.data.response)
+          })
+          .catch(function (error) {
+              console.error(error);
+          });
+    }, []
+    )
+
+    function openPageLeague() {
+        navigation.navigate('ApiLeague');
+    }
+
+    return(
+        <Container>
+            <FlatList
+                data={data}
+                keyExtractor={(item) => item.code}
+                renderItem={({item}) => {
+                    return <Countries name={item.name}/>
+                }}
+            /> 
+        </Container>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'black',
-    },
-    button: {
-        padding: 20,
-        marginVertical: 8,
-        marginHorizontal: 1,
-        backgroundColor: '#FFF',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        width: '100%',
-        height: '99%',
-    },
-    textButton: {
-        alignSelf: 'center',
-        fontSize: 18,
-        fontWeight: 'bold',
-    },
-    image: {
-        width: 45,
-        height: 45,
-    },
-    imageContainer: {
-        borderRadius: 50,
-        width: '17%',
-        height: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#FFF'
-    },
-    name: {
-        width: '60%',
-    }
-})

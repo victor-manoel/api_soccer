@@ -1,10 +1,23 @@
 import React from 'react';
-import Welcome from './src/pages/Welcome';
-import ApiCountry from './src/components/ApiCountry';
+import { Routes } from './src/routes';
+import AppLoading from 'expo-app-loading';
+import {useFonts, Poppins_400Regular, Poppins_500Medium, Poppins_700Bold} from '@expo-google-fonts/poppins';
+
+import theme from './src/global/styles/theme';
 
 export default function App() {
-  return (
-    <ApiCountry/>
-  );
-}
 
+  const[fontsLoaded] = useFonts({
+    Poppins_400Regular,
+    Poppins_500Medium,
+    Poppins_700Bold,
+  });
+
+  if(!fontsLoaded) {
+    return <AppLoading/>
+  }
+
+  return (
+    <Routes/>
+  )
+}
