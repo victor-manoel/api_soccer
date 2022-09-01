@@ -33,7 +33,7 @@ export default function(){
           };
           axios.request(options)
           .then(response => {
-            console.log(response.data.response[0]?.league?.standings[0][1]?.team?.name)
+            console.log(response.data.response[0]?.league)
             setData(response.data.response)
           })
           .catch(function (error) {
@@ -45,17 +45,25 @@ export default function(){
     return(
         <SafeAreaView style={styles.container}>
             <View style={styles.siglasView}>
-                <Text style={styles.textSiglas}>Equipes</Text>
-                <Text  style={styles.textSiglas}>J</Text>
-                <Text  style={styles.textSiglas}>G</Text>
-                <Text  style={styles.textSiglas}>P</Text>
+                <Text style={styles.textSiglas}>Position</Text>
+                <Text style={styles.textSiglas}>Teams</Text>
+                <Text  style={styles.textSiglas}>Games</Text>
+                <Text  style={styles.textSiglas}>GoalsDif</Text>
+                <Text  style={styles.textSiglas}>Points</Text>
             </View>
             <View style={styles.flatlistContainer}>
                 <FlatList
                     data={data}
                     keyExtractor={(item) => item.league.id}
                     renderItem={({item}) => {
-                        return <Standings name={item.league.standings[0][1]?.team?.name} uri={item.league.standings[0][1]?.team?.logo}/>
+                        return <Standings
+                        rank={item.league.standings[0][1]?.rank}
+                        uri={item.league.standings[0][1]?.team?.logo} 
+                        name={item.league.standings[0][1]?.team?.name} 
+                        games={item.league.standings[0][1]?.all?.played}
+                        points={item.league.standings[0][1]?.points}
+                        goalsDif={item.league.standings[0][1]?.goalsDiff}
+                        />
                     }}
                 /> 
             </View>
@@ -77,11 +85,10 @@ const styles = StyleSheet.create({
         height: '5%',
     },
     textSiglas: {
-        marginHorizontal: 38,
-        fontSize: 15,
+        marginHorizontal: 10,
+        fontSize: 14,
         fontWeight: 'bold',
         marginVertical: 10,
-
     },
     flatlistContainer: {
         flex: 1,

@@ -1,29 +1,28 @@
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, FlatList, View, Text, SafeAreaView} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {Countries} from '../../components/CountriesList';
+import {ActivityIndicator, FlatList, View, Text, SafeAreaView, StyleSheet} from 'react-native';
+
+import {Leagues} from '../../components/LeaguesList';
+
 import {Container} from './styles';
 
 import axios from "axios";
 
-type Country = {
+type Player = {
     name: string;
-    code: string;
-    league: string;
-    flag: string;
+    id: string;
+    player: string;
+    logo: string;
 }
 
-export default function ApiCountry() {
-
-    const navigation = useNavigation();
-
+export default function Players(){
     const [loading, setLoading] = useState(true);
-    const [data, setData] = useState<Country[]>([]);
+    const [data, setData] = useState<Player[]>([]);
 
     useEffect(() => {
         const options = {
             method: 'GET',
-            url: 'https://api-football-v1.p.rapidapi.com/v3/countries',
+            url: 'https://api-football-v1.p.rapidapi.com/v3/players',
+            params: {team: '33', season: '2022'},
             headers: {
               'X-RapidAPI-Key': 'f500032209mshc016268ad53aa50p1f85d0jsn056aabbd7f29',
               'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
@@ -41,17 +40,13 @@ export default function ApiCountry() {
     }, []
     )
 
-    function openPageLeague() {
-        navigation.navigate('ApiLeague');
-    }
-
     return(
         <Container>
             <FlatList
                 data={data}
-                keyExtractor={(item) => item.code}
+                keyExtractor={(item) => item.player.id}
                 renderItem={({item}) => {
-                    return <Countries name={item.name} uri={item.flag}/>
+                    return <Leagues name={item.player.firstname} uri={item.player.photo}/>
                 }}
             /> 
         </Container>

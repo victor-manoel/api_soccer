@@ -5,13 +5,14 @@ const {Screen, Navigator} = createNativeStackNavigator();
 
 import Countries from '../pages/Countries';
 import Leagues from '../pages/Leagues';
+import Players from '../pages/Players';
+import Teams from '../pages/Teams';
+import Standings from '../pages/Standings';
 
 export function StackRoutes(){
     return(
     <Navigator>
-        <Screen name='Countries' component={Countries}/>
-
-        <Screen name='Leagues' component={Leagues}/>
+        <Screen name='Standings' component={Standings}/>
     </Navigator>
     )
 }
