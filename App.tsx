@@ -3,7 +3,7 @@ import { Routes } from './src/routes';
 import AppLoading from 'expo-app-loading';
 import {useFonts, Poppins_400Regular, Poppins_500Medium, Poppins_700Bold} from '@expo-google-fonts/poppins';
 
-import theme from './src/global/styles/theme';
+import theme from './src/global/styles/fonts';
 
 export default function App() {
 

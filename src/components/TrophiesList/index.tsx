@@ -1,20 +1,18 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, TouchableOpacityProps, Image} from 'react-native';
 
-interface LeagueProps extends TouchableOpacityProps {
+interface TrophiesProps extends TouchableOpacityProps {
     name: string;
-    uri: string;
+    season: string;
 }
 
-export function Leagues({name, uri, ...rest}: LeagueProps){
+export function Trophies({name, season, ...rest}: TrophiesProps){
     return(
         <View style={styles.container}>
             <TouchableOpacity style={styles.button} activeOpacity={0.8}>
                 <View style={styles.name}>
                     <Text style={styles.textButton}>{name}</Text>
-                </View>
-                <View style={styles.imageContainer}>
-                    <Image style={styles.image} source={{uri}}/>
+                    <Text style={styles.textButton2}>{season}</Text>
                 </View>
             </TouchableOpacity>
         </View>
@@ -54,6 +52,10 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
     },
+    textButton2: {
+        alignSelf: 'center',
+        fontSize: 15,
+    },
     image: {
         width: 45,
         height: 45,
@@ -67,6 +69,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFF'
     },
     name: {
-        width: '60%',
+        width: '100%',
     }
 })

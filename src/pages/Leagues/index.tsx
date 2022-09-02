@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, FlatList, View, Text, SafeAreaView, StyleSheet} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 import {Leagues} from '../../components/LeaguesList';
 
 import {Container} from './styles';
 
 import axios from "axios";
+
 
 type League = {
     name: string;
@@ -15,6 +17,8 @@ type League = {
 }
 
 export default function(){
+    const navigation = useNavigation();
+
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState<League[]>([]);
 

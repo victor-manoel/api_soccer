@@ -5,12 +5,16 @@ import Lottie from 'lottie-react-native';
 
 import soccer from '../../assets/soccer.json';
 
+import fonts from '../../global/styles/fonts';
+
+
 export default function Welcome() {
  return (
   <SafeAreaView style={styles.container}>
 
     <View style={styles.textContainer}>
-      <Text style={styles.title}>Bem-vindo(a)</Text>
+      <Text style={styles.title}>Bem-Vindo</Text>
+      <Text style={styles.titleTwo}>Prossiga para ter acesso as informações da sua equipe {'\n'}ou liga favorita</Text>
     </View>
 
     <View style={styles.image}>
@@ -31,18 +35,26 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-around',
-    backgroundColor: 'black',
+    backgroundColor: '#90EE90',
   },
   textContainer: {
     flex: 1,
+    alignSelf: 'center',
     justifyContent: 'center', 
     alignItems: 'center',
-    marginHorizontal: 25,
+    marginHorizontal: 20,
   },
   title: {
-    fontWeight: 'bold',
-    fontSize: 35,
-    color: '#FFF',
+    marginTop: 35,
+    fontSize: 30,
+    color: 'black',
+    fontFamily: fonts.fonts.bold,
+  },
+  titleTwo: {
+    marginTop: 15,
+    fontSize: 18,
+    color: 'black',
+    fontFamily: fonts.fonts.regular,
   },
   image: {
     flex: 2,
@@ -59,14 +71,14 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     marginHorizontal: 25,
     width: '50%',
-    height: 40,
+    height: 50,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
   },
   buttonText: {
     color: 'black',
-    fontSize: 15,
-    fontWeight: 'bold',
+    fontSize: 18,
+    fontFamily: fonts.fonts.bold,
   }
 })
