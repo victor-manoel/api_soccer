@@ -12,41 +12,68 @@ import Welcome from '../pages/Welcome';
 
 export function StackRoutes(){
     return(
-    <Navigator initialRouteName='Welcome' screenOptions={{
-        headerShown: false,
+    <Navigator initialRouteName='Standings' screenOptions={{
+        
     }}>
         <Screen name='Welcome' component={Welcome} options={{
             title: 'Welcome',
+            headerShown: false,
+            headerStyle: {
+                backgroundColor: '#90EE90'
+            }
             }
         } />
 
         <Screen name='Leagues' component={Leagues} options={{
             title: 'Choose your league',
+            headerTintColor: '#90EE90',
             headerTitleStyle: {
                 color: 'black',
                 fontWeight: 'bold',
                 fontSize: 25
+            },
+            headerStyle: {
+                backgroundColor: '#90EE90'
             }
         }}/>
         <Screen name='Teams' component={Teams} options={{
-            title: 'Teams',
+            title: 'Times',
             headerBackTitleVisible: false,
             headerTitleStyle: {
                 color: 'black',
                 fontWeight: 'bold',
                 fontSize: 25,
+            },
+            headerStyle: {
+                backgroundColor: '#90EE90'
             }
         }}/>
 
         <Screen name='Players' component={Players} options={{
-            title: 'Players',
+            title: 'Jogadores',
             headerBackTitleVisible: false,
             headerTitleStyle: {
                 color: 'black',
                 fontWeight: 'bold',
                 fontSize: 25,
+            },
+            headerStyle: {
+                backgroundColor: '#90EE90'
             }
         }}/>
+
+        <Screen name='Standings' component={Standings} options={{
+            title: 'Classificações',
+            headerBackTitleVisible: false,
+            headerTitleStyle: {
+                color: 'black',
+                fontWeight: 'bold',
+                fontSize: 25,
+            },
+            headerStyle: {
+                backgroundColor: '#CCC'
+            }
+        }}/>    
         
     </Navigator>
     )

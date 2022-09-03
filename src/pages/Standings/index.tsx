@@ -33,12 +33,8 @@ export default function(){
           };
           axios.request(options)
           .then(response => {
-            
-            if(response.data) {
-            const [standings] = response.data.response 
-            const setData = standings.flatMap((item) => item)
-            }
-            console.log(setData)
+            console.log(response.data.response[0]?.league)
+            setData(response.data.response)
           })
           .catch(function (error) {
               console.error(error);
