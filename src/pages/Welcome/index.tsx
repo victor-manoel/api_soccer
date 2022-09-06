@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-around',
-    backgroundColor: '#90EE90',
+    backgroundColor: '#fefefe',
   },
   textContainer: {
     flex: 1,
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   button: {
-    backgroundColor: '#FFF',
+    backgroundColor: '#90EE90',
     borderRadius: 15,
     marginHorizontal: 25,
     width: '50%',
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonText: {
-    color: 'black',
+    color: '#FFF',
     fontSize: 18,
     fontFamily: fonts.fonts.bold,
   }

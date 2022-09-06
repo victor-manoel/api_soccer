@@ -3,7 +3,7 @@ import {ActivityIndicator, FlatList, View, Text, SafeAreaView, StyleSheet} from 
 
 import {Leagues} from '../../components/LeaguesList';
 
-import {Container} from './styles';
+import {Container} from '../Render/styles';
 
 import axios from "axios";
 
@@ -14,15 +14,18 @@ type Player = {
     logo: string;
 }
 
-export default function Players(){
+export default function Players({route}){
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState<Player[]>([]);
 
+    const id = route.params.id;
+
     useEffect(() => {
+        if(id){
         const options = {
             method: 'GET',
             url: 'https://api-football-v1.p.rapidapi.com/v3/players',
-            params: {team: '33', season: '2022'},
+            params: {team: id, season: '2022'},
             headers: {
               'X-RapidAPI-Key': 'f500032209mshc016268ad53aa50p1f85d0jsn056aabbd7f29',
               'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
@@ -37,7 +40,8 @@ export default function Players(){
           .catch(function (error) {
               console.error(error);
           });
-    }, []
+        }
+    }, [id]
     )
 
     return(
