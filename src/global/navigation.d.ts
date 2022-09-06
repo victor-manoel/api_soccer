@@ -1,4 +1,4 @@
-import { Standings } from "../../types";
+import { Standings } from "../types";
 
 export declare global {
   namespace ReactNavigation {

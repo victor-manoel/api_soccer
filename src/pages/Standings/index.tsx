@@ -9,7 +9,7 @@ import {
   StyleSheet,
 } from "react-native";
 import { StandingsList } from "../../components/StandingsList";
-import { Container } from "./styles";
+import { Container, LettersView, LettersText, DataContainer } from "./styles";
 import api from "../../services";
 import { Standings } from "../../types";
 
@@ -53,59 +53,32 @@ export default function ({route}) {
   }, [id]); 
 
 
-  const handleNavigation = (standing: Standings) =>
-    navigate("Render", standing);
+  const handleNavigation = (id: number) =>
+    navigate("Players", {id});
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.siglasView}>
-        <Text style={styles.textSiglas}>Position</Text>
-        <Text style={styles.textSiglas}>Teams</Text>
-        <Text style={styles.textSiglas}>Games</Text>
-        <Text style={styles.textSiglas}>GoalsDif</Text>
-        <Text style={styles.textSiglas}>Points</Text>
-      </View>
-      <View style={styles.flatlistContainer}>
+    <Container>
+      <LettersView>
+        <LettersText>Position</LettersText>
+        <LettersText>Teams</LettersText>
+        <LettersText>Games</LettersText>
+        <LettersText>GoalsDif</LettersText>
+        <LettersText>Points</LettersText>
+      </LettersView>
+      <DataContainer>
         <FlatList
           data={data}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => {
             return (
               <StandingsList
-                onPress={() => handleNavigation(item)}
+                onPress={() => handleNavigation(item.team.id)}
                 data={item}
               />
             );
           }}
         />
-      </View>
-    </SafeAreaView>
+      </DataContainer>
+    </Container>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#FFF",
-    marginBottom: 5,
-  },
-  siglasView: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    backgroundColor: "#CCC",
-    width: "100%",
-    height: "5%",
-  },
-  textSiglas: {
-    marginHorizontal: 10,
-    fontSize: 14,
-    fontWeight: "bold",
-    marginVertical: 10,
-  },
-  flatlistContainer: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "row",
-  },
-});

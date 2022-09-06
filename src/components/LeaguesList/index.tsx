@@ -1,12 +1,10 @@
 import React from "react";
 import {
-  View,
-  Text,
   StyleSheet,
   TouchableOpacity,
   TouchableOpacityProps,
-  Image,
 } from "react-native";
+import { Container, TextButton, Image, ImageContainer, NameContainer, } from "./styles";
 
 interface LeagueProps extends TouchableOpacityProps {
   name: string;
@@ -15,28 +13,21 @@ interface LeagueProps extends TouchableOpacityProps {
 
 export function Leagues({ name, uri, ...rest }: LeagueProps) {
   return (
-    <View style={styles.container}>
+    <Container>
       <TouchableOpacity {...rest} style={styles.button} activeOpacity={0.8}>
-        <View style={styles.name}>
-          <Text style={styles.textButton}>{name}</Text>
-        </View>
-        <View style={styles.imageContainer}>
-          <Image style={styles.image} source={{ uri }} />
-        </View>
+        <NameContainer>
+          <TextButton>{name}</TextButton>
+        </NameContainer>
+        <ImageContainer>
+          <Image source={{ uri }} />
+        </ImageContainer>
       </TouchableOpacity>
-    </View>
+    </Container>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#90EE90",
-    padding: 5,
-    paddingHorizontal: 18,
-  },
+
   button: {
     padding: 20,
     marginVertical: 5,
@@ -55,24 +46,5 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 3,
   },
-  textButton: {
-    alignSelf: "center",
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  image: {
-    width: 45,
-    height: 45,
-  },
-  imageContainer: {
-    borderRadius: 50,
-    width: "17%",
-    height: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#FFF",
-  },
-  name: {
-    width: "60%",
-  },
+
 });
