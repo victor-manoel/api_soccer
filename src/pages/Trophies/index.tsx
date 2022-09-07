@@ -14,15 +14,19 @@ type Trophy = {
     season: string;
 }
 
-export default function (){
+export default function ({route}){
+
+    const id = route.params.id;
+
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState<Trophy[]>([]);
 
     useEffect(() => {
+        if(id){
         const options = {
             method: 'GET',
             url: 'https://api-football-v1.p.rapidapi.com/v3/trophies',
-            params: {player: '276'},
+            params: {player: id},
             headers: {
               'X-RapidAPI-Key': 'f500032209mshc016268ad53aa50p1f85d0jsn056aabbd7f29',
               'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
@@ -38,7 +42,7 @@ export default function (){
           .catch(function (error) {
               console.error(error);
           });
-    }, []
+    }}, [id]
     )
 
     return(

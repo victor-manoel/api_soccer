@@ -7,7 +7,7 @@ export default {
         success: '#12A454',
 
         white: '#FFFFFF',
-        title: '#363F5F',
+        black: '#000',
         background: '#969CB2',
     },
 

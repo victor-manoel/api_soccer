@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, FlatList, View, Text, SafeAreaView, StyleSheet} from 'react-native';
-
+import { useNavigation } from "@react-navigation/native";
 import {Leagues} from '../../components/LeaguesList';
 
 import {Container} from '../Render/styles';
@@ -14,18 +14,18 @@ type Player = {
     logo: string;
 }
 
-export default function Players({route}){
+export default function Players(){
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState<Player[]>([]);
 
-    const id = route.params.id;
+    const { navigate } = useNavigation();
 
     useEffect(() => {
-        if(id){
+
         const options = {
             method: 'GET',
             url: 'https://api-football-v1.p.rapidapi.com/v3/players',
-            params: {team: id, season: '2022'},
+            params: {team: '39', season: '2022'},
             headers: {
               'X-RapidAPI-Key': 'f500032209mshc016268ad53aa50p1f85d0jsn056aabbd7f29',
               'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
@@ -40,9 +40,11 @@ export default function Players({route}){
           .catch(function (error) {
               console.error(error);
           });
-        }
-    }, [id]
+        
+    }, []
     )
+
+    const handleNavigation = (id: number) => navigate("Trophies", { id });
 
     return(
         <Container>
@@ -50,7 +52,7 @@ export default function Players({route}){
                 data={data}
                 keyExtractor={(item) => item.player.id}
                 renderItem={({item}) => {
-                    return <Leagues name={item.player.firstname} uri={item.player.photo}/>
+                    return <Leagues name={item.player.firstname} uri={item.player.photo} onPress={() => handleNavigation(item.player.id)}/>
                 }}
             /> 
         </Container>

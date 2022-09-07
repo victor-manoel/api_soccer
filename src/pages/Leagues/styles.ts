@@ -14,7 +14,7 @@ export const DataContainer = styled.View`
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        background-color: '#FFF';
+        background-color: ${({theme}) => theme.colors.secondary};
         margin-bottom: 1px;
         margin-top: 5px;
 `;
@@ -24,8 +24,8 @@ export const SearchContainer = styled.View`
         align-items: center;
         justify-content: center;
         background-color: ${({theme}) => theme.colors.white};
-        border-radius: 5px;
-        width: 60%;
+        border-radius: 15px;
+        width: 70%;
         height: 7%;
 `;
 

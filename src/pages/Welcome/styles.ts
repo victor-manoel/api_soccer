@@ -6,7 +6,7 @@ import fonts from '../../global/styles/theme';
 export const Container = styled.SafeAreaView`
     flex: 1;
     justify-content: space-around;
-    background-color: #fefefe;
+    background-color: ${({theme}) => theme.colors.white};
 `;
 
 export const TextContainer = styled.View`
@@ -21,13 +21,14 @@ export const Title = styled.Text`
     margin-top: 30px;
     font-size: 35px;
     color: black;
-    font-weight: bold;
+    font-family: ${({theme}) => theme.fonts.bold};
 `;
 
 export const TitleTwo = styled.Text`
     margin-top: 15px;
     font-size: 20px;
     color: black;
+    font-family: ${({theme}) => theme.fonts.regular};
 `;
 
 export const Image = styled.View`
@@ -44,7 +45,7 @@ export const ButtonView = styled.View`
 `;
 
 export const Button = styled.TouchableOpacity`
-    background-color: #90EE90;
+    background-color: ${({theme}) => theme.colors.black};
     border-radius: 15px;
     margin: 25px;
     margin-top: 90px;
@@ -57,7 +58,7 @@ export const Button = styled.TouchableOpacity`
 
 export const ButtonText = styled.Text`
     font-size: 18px;
-    color: #FFF;
+    color: ${({theme}) => theme.colors.white};
     font-weight: 900;
 `;
 

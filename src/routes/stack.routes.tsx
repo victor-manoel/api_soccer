@@ -18,7 +18,7 @@ export function StackRoutes() {
       screenOptions={{
         headerBackTitleVisible: false,
         headerStyle: {
-          backgroundColor: "#CCC",
+          backgroundColor: "#fefefe",
         },
         headerTitleStyle: {
           color: "black",
@@ -52,7 +52,7 @@ export function StackRoutes() {
         name="Players"
         component={Players}
         options={{
-          title: "Jogadores",
+          title: "Elenco",
         }}
       />
 
@@ -68,7 +68,7 @@ export function StackRoutes() {
         name="Trophies"
         component={Trophies}
         options={{
-          title: "Classificações",
+          title: "Troféus Conquistados",
         }}
       />
       <Screen name="Render" component={Render} />

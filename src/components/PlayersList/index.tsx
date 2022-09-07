@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     button: {
         padding: 20,
         marginVertical: 5,
-        backgroundColor: '#FFF',
+        backgroundColor: '#000',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
     image: {
         width: 45,
         height: 45,
+        borderRadius: 20,
     },
     imageContainer: {
         borderRadius: 50,
@@ -64,9 +65,9 @@ const styles = StyleSheet.create({
         height: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#FFF'
+        backgroundColor: '#000'
     },
     name: {
-        width: '60%',
+        width: '6r0%',
     }
 })
