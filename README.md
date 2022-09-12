@@ -1,7 +1,5 @@
 # api_soccer
 
-Aplicação teste para processo seletivo da Esportudo, Axios na api (https://www.api-football.com)</br>
-
 
 ## Motivação
 
